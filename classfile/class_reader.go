@@ -13,7 +13,7 @@ func (cr *ClassReader) readByte() byte {
 	return val
 }
 
-func (cr *ClassReader) readBytes(n int) []byte {
+func (cr *ClassReader) readBytes(n uint32) []byte {
 	val := cr.data[:n]
 	cr.data = cr.data[n:]
 	return val
