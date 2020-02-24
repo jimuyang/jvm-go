@@ -6,7 +6,7 @@ type MemberInfo struct {
 	accessFlags     uint16
 	nameIndex       uint16
 	descriptorIndex uint16
-	// attributes []AttributeInfo
+	attributes      []AttributeInfo
 }
 
 func readMembers(reader *ClassReader, cp ConstantPool) []*MemberInfo {
@@ -24,7 +24,7 @@ func readMember(reader *ClassReader, cp ConstantPool) *MemberInfo {
 		accessFlags:     reader.readUint16(),
 		nameIndex:       reader.readUint16(),
 		descriptorIndex: reader.readUint16(),
-		// attributes:
+		attributes:      readAttributes(reader, cp),
 	}
 }
 

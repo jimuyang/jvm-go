@@ -14,7 +14,7 @@ type ClassFile struct {
 	constantPool ConstantPool
 	fields       []*MemberInfo
 	methods      []*MemberInfo
-	// attributes []AttributeInfo
+	attributes   []AttributeInfo
 }
 
 // Parse 将字节码解析为ClassFile
@@ -34,6 +34,25 @@ func Parse(classData []byte) (cf *ClassFile, err error) {
 	return
 }
 
+// Print 打印ClassFile的重要信息
+func (sf *ClassFile) Print() {
+	fmt.Printf("version: %v.%v\n", sf.majorVersion, sf.minorVersion)
+	fmt.Printf("constant counts: %v\n", len(sf.constantPool))
+	fmt.Printf("access flags: 0x%x\n", sf.accessFlags)
+	fmt.Printf("this class: %v\n", sf.Classname())
+	fmt.Printf("super class: %v\n", sf.SuperClassName())
+	fmt.Printf("interfaces: %v\n", sf.InterfacesNames())
+	fmt.Printf("fields count: %v\n", len(sf.fields))
+	for _, f := range sf.fields {
+		fmt.Printf("   %s\n", f.Name())
+	}
+
+	fmt.Printf("methods count: %v\n", len(sf.methods))
+	for _, m := range sf.methods {
+		fmt.Printf("   %s\n", m.Name())
+	}
+}
+
 func (sf *ClassFile) read(reader *ClassReader) {
 	sf.readAndCheckMagic(reader)
 	sf.readAndCheckVersion(reader)
@@ -44,7 +63,7 @@ func (sf *ClassFile) read(reader *ClassReader) {
 	sf.interfaces = reader.readUint16s()
 	sf.fields = readMembers(reader, sf.constantPool)
 	sf.methods = readMembers(reader, sf.constantPool)
-	// sf.attributes
+	sf.attributes = readAttributes(reader, sf.constantPool)
 }
 
 // 检查class文件的开头magic
