@@ -73,3 +73,13 @@ func (sf *OperandStack) PopRef() *Object {
 	sf.slots[sf.size].ref = nil // 垃圾回收
 	return ref
 }
+
+func (sf *OperandStack) PushSlot(slot Slot) {
+	sf.slots[sf.size] = slot
+	sf.size++
+}
+
+func (sf *OperandStack) PopSlot() Slot {
+	sf.size--
+	return sf.slots[sf.size]
+}
