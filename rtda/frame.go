@@ -12,5 +12,12 @@ func newFrame(maxLocals, maxStack uint) *Frame {
 		localVars:    newLocalVars(maxLocals),
 		operandStack: newOperandStack(maxStack),
 	}
+}
 
+func (sf *Frame) OperandStack() *OperandStack {
+	return sf.operandStack
+}
+
+func (sf *Frame) LocalVars() LocalVars {
+	return sf.localVars
 }
