@@ -1,8 +1,8 @@
 package stores
 
 import (
-	"jvm-go/instruction"
-	"jvm-go/rtda"
+	"github.com/jimuyang/jvm-go/instruction"
+	"github.com/jimuyang/jvm-go/rtda"
 )
 
 type LSTORE struct {

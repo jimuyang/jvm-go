@@ -1,8 +1,8 @@
 package constants
 
 import (
-	"jvm-go/instruction"
-	"jvm-go/rtda"
+	"github.com/jimuyang/jvm-go/instruction"
+	"github.com/jimuyang/jvm-go/rtda"
 )
 
 // NOP 该指令什么也不做

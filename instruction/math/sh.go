@@ -1,8 +1,8 @@
 package math
 
 import (
-	"jvm-go/instruction"
-	"jvm-go/rtda"
+	"github.com/jimuyang/jvm-go/instruction"
+	"github.com/jimuyang/jvm-go/rtda"
 )
 
 // int 左移
