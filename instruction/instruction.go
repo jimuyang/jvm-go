@@ -1,7 +1,7 @@
 package instruction
 
 import (
-	"jvm-go/rtda"
+	"github.com/jimuyang/jvm-go/rtda"
 )
 
 // Instruction 指令接口
